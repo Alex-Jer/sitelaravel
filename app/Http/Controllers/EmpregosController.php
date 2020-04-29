@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Categorias;
 use App\Empregos;
+use App\Empresas;
+use App\Localidades;
+use App\Tipos;
 use Illuminate\Http\Request;
 
 class EmpregosController extends Controller
@@ -14,6 +18,7 @@ class EmpregosController extends Controller
      */
     public function index()
     {
+        return view('empregos.index');
     }
 
     /**
@@ -23,7 +28,12 @@ class EmpregosController extends Controller
      */
     public function create()
     {
-        return view('empregos.create');
+        $localidades = Localidades::all();
+        $empresas = Empresas::all();
+        $categorias = Categorias::all();
+        $tipos = Tipos::all();
+
+        return view('empregos.create', compact('localidades', 'empresas', 'categorias', 'tipos'));
     }
 
     /**
@@ -33,6 +43,26 @@ class EmpregosController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'designacao' => 'required',
+            'descricao' => 'required',
+            'localidade' => 'required',
+            'empresa' => 'required',
+            'categoria' => 'required',
+            'tipo' => 'required',
+        ]);
+
+        $emprego = new Empregos();
+        $emprego->designacao = request('designacao');
+        $emprego->descricao = request('descricao');
+        $emprego->localidade_id = request('localidade');
+        $emprego->empresa_id = request('empresa');
+        $emprego->categoria_id = request('categoria');
+        $emprego->tipo_id = request('tipo');
+
+        $emprego->save();
+
+        return redirect('/empregos');
     }
 
     /**

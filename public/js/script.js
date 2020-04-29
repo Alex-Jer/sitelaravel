@@ -5,8 +5,10 @@ $('.nav-link').on('click', () => {
 
 $('.select2').select2();
 
-$('#btnLimpar').on('click', () => {
+$('#limpar').on('click', () => {
   $('.select2')
     .val('DO')
     .trigger('change');
+  document.getElementById('descricao').value = '';
+  document.getElementById('designacao').value = '';
 });

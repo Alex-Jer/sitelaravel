@@ -36,4 +36,6 @@ Route::get('/contactos', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/empregos', 'EmpregosController@index');
+Route::post('/empregos', 'EmpregosController@store');
 Route::get('/empregos/create', 'EmpregosController@create')->name('empregos.create');

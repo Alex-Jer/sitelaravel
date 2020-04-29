@@ -33,71 +33,124 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form">
+                        <form id="test" role="form" method="POST" action="/empregos">
+                            @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="inputDesignacao">Designação</label>
-                                    <input type="text" class="form-control" id="inputDesignacao"
-                                        placeholder="Insira uma designação">
+                                    <label for="designacao">Designação</label>
+                                    <input type="text" class="form-control" name="designacao" id="designacao"
+                                        placeholder="Insira uma designação" value="{{ old('designacao') }}" required>
+                                    @error('designacao')
+                                    <p class="text-danger">
+                                        {{ $errors->first('designacao') }}
+                                    </p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="selectLocal">Localidade</label>
-                                    <select class="form-control select2" id="selectLocal">
+                                    <label for="localidade">Localidade</label>
+                                    <select class="form-control select2" name="localidade" id="localidade">
                                         <option value="DO" selected="selected" disabled>Selecione uma localidade
                                         </option>
-                                        <option>Aveiro</option>
-                                        <option>Leirira</option>
-                                        <option>Lisboa</option>
-                                        <option>Porto</option>
+                                        @foreach ($localidades as $localidade)
+
+                                        @if (old('localidade') == $localidade->id)
+                                        <option value="{{ $localidade->id }}" selected>{{ $localidade->designacao }}
+                                        </option>
+                                        @else
+                                        <option value="{{ $localidade->id }}">{{ $localidade->designacao }}</option>
+                                        @endif
+
+                                        @endforeach
                                     </select>
+                                    @error('localidade')
+                                    <p class="text-danger">
+                                        {{ $errors->first('localidade') }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="selectEmpresa">Empresa</label>
-                                    <select class="form-control select2" id="selectEmpresa">
+                                    <label for="empresa">Empresa</label>
+                                    <select class="form-control select2" name="empresa" id="empresa">
                                         <option value="DO" selected="selected" disabled>Selecione uma empresa
                                         </option>
-                                        <option>EuroFirms Leiria</option>
-                                        <option>Akapeople</option>
-                                        <option>Ferrovial Serviços SA</option>
-                                        <option>Closer</option>
+                                        @foreach ($empresas as $empresa)
+
+                                        @if (old('empresa') == $empresa->id)
+                                        <option value="{{ $empresa->id }}" selected>{{ $empresa->designacao }}</option>
+                                        @else
+                                        <option value="{{ $empresa->id }}">{{ $empresa->designacao }}</option>
+                                        @endif
+
+                                        @endforeach
                                     </select>
+                                    @error('empresa')
+                                    <p class="text-danger">
+                                        {{ $errors->first('empresa') }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="selectCat">Categoria</label>
-                                    <select class="form-control select2" id="selectCat">
+                                    <label for="categoria">Categoria</label>
+                                    <select class="form-control select2" name="categoria" id="categoria">
                                         <option value="DO" selected="selected" disabled>Selecione uma categoria
                                         </option>
-                                        <option>Engenharia (Química/Biologia)</option>
-                                        <option>Informática</option>
-                                        <option>Transportes/Logística</option>
-                                        <option>Formação</option>
+                                        @foreach ($categorias as $categoria)
+                                        @if (old('categoria') == $categoria->id)
+                                        <option value="{{ $categoria->id }}" selected>{{ $categoria->designacao }}
+                                        </option>
+                                        @else
+                                        <option value="{{ $categoria->id }}">{{ $categoria->designacao }}</option>
+                                        @endif
+
+                                        @endforeach
                                     </select>
+                                    @error('categoria')
+                                    <p class="text-danger">
+                                        {{ $errors->first('categoria') }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="selectTipo">Tipo de Emprego</label>
-                                    <select class="form-control select2" id="selectTipo">
+                                    <label for="tipo">Tipo de Emprego</label>
+                                    <select class="form-control select2" name="tipo" id="tipo">
                                         <option value="DO" selected="selected" disabled>Selecione um tipo
                                         </option>
-                                        <option>Full-Time</option>
-                                        <option>Part-Time</option>
-                                        <option>Teletrabalho</option>
+                                        @foreach ($tipos as $tipo)
+
+                                        @if (old('tipo') == $tipo->id)
+                                        <option value="{{ $tipo->id }}" selected>{{ $tipo->designacao }}</option>
+                                        @else
+                                        <option value="{{ $tipo->id }}">{{ $tipo->designacao }}</option>
+                                        @endif
+
+                                        @endforeach
                                     </select>
+                                    @error('tipo')
+                                    <p class="text-danger">
+                                        {{ $errors->first('tipo') }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="textareaDesc">Descrição</label>
-                                    <textarea id="textareaDesc" class="form-control" rows="3"
-                                        placeholder="Insira uma descrição" required></textarea>
+                                    <label for="descricao">Descrição</label>
+                                    <textarea name="descricao" id="descricao" class="form-control" rows="3"
+                                        placeholder="Insira uma descrição" required>{{ old('designacao') }}</textarea>
+                                    @error('descricao')
+                                    <p class="text-danger">
+                                        {{ $errors->first('descricao') }}
+                                    </p>
+                                    @enderror
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <input type="submit" class="btn btn-primary" id="btnGravar" value="Gravar">
-                                <input type="reset" class="btn btn-warning" id="btnLimpar" value="Limpar">
+                                <input type="submit" class="btn btn-primary" name="gravar" id="gravar" value="Gravar">
+                                <input type="button" class="btn btn-warning" name="gravar" id="limpar" value="Limpar">
                             </div>
                         </form>
                     </div>
