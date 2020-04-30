@@ -15,31 +15,31 @@ class CreateEmpregosTable extends Migration
             $table->id();
             $table->string('designacao');
             $table->text('descricao');
-            $table->unsignedBigInteger('localidade_id');
-            $table->unsignedBigInteger('empresa_id');
-            $table->unsignedBigInteger('categoria_id');
-            $table->unsignedBigInteger('tipo_id');
+            $table->unsignedBigInteger('localidades_id');
+            $table->unsignedBigInteger('empresas_id');
+            $table->unsignedBigInteger('categorias_id');
+            $table->unsignedBigInteger('tipos_id');
             $table->timestamps();
 
-            $table->foreign('localidade_id')
+            $table->foreign('localidades_id')
                 ->references('id')
                 ->on('localidades')
                 ->onDelete('cascade')
             ;
 
-            $table->foreign('empresa_id')
+            $table->foreign('empresas_id')
                 ->references('id')
                 ->on('empresas')
                 ->onDelete('cascade')
             ;
 
-            $table->foreign('categoria_id')
+            $table->foreign('categorias_id')
                 ->references('id')
                 ->on('categorias')
                 ->onDelete('cascade')
             ;
 
-            $table->foreign('tipo_id')
+            $table->foreign('tipos_id')
                 ->references('id')
                 ->on('tipos')
                 ->onDelete('cascade')

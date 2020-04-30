@@ -18,7 +18,9 @@ class EmpregosController extends Controller
      */
     public function index()
     {
-        return view('empregos.index');
+        $empregos = Empregos::all();
+
+        return view('empregos.index', compact('empregos'));
     }
 
     /**
@@ -55,10 +57,10 @@ class EmpregosController extends Controller
         $emprego = new Empregos();
         $emprego->designacao = request('designacao');
         $emprego->descricao = request('descricao');
-        $emprego->localidade_id = request('localidade');
-        $emprego->empresa_id = request('empresa');
-        $emprego->categoria_id = request('categoria');
-        $emprego->tipo_id = request('tipo');
+        $emprego->localidades_id = request('localidade');
+        $emprego->empresas_id = request('empresa');
+        $emprego->categorias_id = request('categoria');
+        $emprego->tipos_id = request('tipo');
 
         $emprego->save();
 
