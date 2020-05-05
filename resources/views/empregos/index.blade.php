@@ -32,7 +32,13 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="destaques" class="table table-bordered table-striped">
+              @if (session()->has('message'))
+              <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ session()->get('message') }}
+              </div>
+              @endif
+              <table id="empregos" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Designação</th>
@@ -41,17 +47,29 @@
                     <th>Categoria</th>
                     <th>Tipo</th>
                     <th>Data</th>
+                    <th>Atualizado em</th>
+                    <th>Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($empregos as $emprego)
                   <tr>
-                    <td>{{ $emprego->designacao }}</td>
+                    <td><a href="/empregos/{{ $emprego->id }}/edit">{{ $emprego->designacao }}</a></td>
                     <td>{{ $emprego->Empresas->designacao}}</td>
                     <td>{{ $emprego->Localidades->designacao}}</td>
                     <td>{{ $emprego->Categorias->designacao}}</td>
                     <td>{{ $emprego->Tipos->designacao }}</td>
-                    <td>{{ $emprego->created_at->format('d-m-yy') }}</td>
+                    <td>{{ $emprego->created_at->format('yy-m-d') }}</td>
+                    <td>{{ $emprego->updated_at }}</td>
+                    <td class="text-center">
+                      <form id="test" role="form" method="POST" action="/empregos/{{ $emprego->id }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" name="remove" class="link"
+                          style="background-color: transparent; border: none;"><i
+                            class="fas fa-trash text-danger"></i></button>
+                      </form>
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>

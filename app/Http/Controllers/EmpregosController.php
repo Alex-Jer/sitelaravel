@@ -64,7 +64,7 @@ class EmpregosController extends Controller
 
         $emprego->save();
 
-        return redirect('/empregos');
+        return redirect('/empregos')->with('message', 'Novo Emprego Adicionado');
     }
 
     /**
@@ -81,8 +81,14 @@ class EmpregosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empregos $empregos)
+    public function edit(Empregos $emprego)
     {
+        $localidades = Localidades::all();
+        $empresas = Empresas::all();
+        $categorias = Categorias::all();
+        $tipos = Tipos::all();
+
+        return view('empregos.edit', compact('emprego', 'localidades', 'empresas', 'categorias', 'tipos'));
     }
 
     /**
@@ -90,8 +96,27 @@ class EmpregosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empregos $empregos)
+    public function update(Request $request, Empregos $emprego)
     {
+        request()->validate([
+            'designacao' => 'required',
+            'descricao' => 'required',
+            'localidade' => 'required',
+            'empresa' => 'required',
+            'categoria' => 'required',
+            'tipo' => 'required',
+        ]);
+
+        $emprego->designacao = request('designacao');
+        $emprego->descricao = request('descricao');
+        $emprego->localidades_id = request('localidade');
+        $emprego->empresas_id = request('empresa');
+        $emprego->categorias_id = request('categoria');
+        $emprego->tipos_id = request('tipo');
+
+        $emprego->save();
+
+        return redirect('/empregos')->with('message', 'Emprego Atualizado');
     }
 
     /**
@@ -99,7 +124,10 @@ class EmpregosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empregos $empregos)
+    public function destroy(Empregos $emprego)
     {
+        $emprego->delete();
+
+        return redirect('/empregos')->with('message', 'Emprego Removido');
     }
 }

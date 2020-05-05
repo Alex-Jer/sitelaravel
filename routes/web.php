@@ -39,3 +39,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/empregos', 'EmpregosController@index');
 Route::post('/empregos', 'EmpregosController@store');
 Route::get('/empregos/create', 'EmpregosController@create')->name('empregos.create');
+Route::get('/empregos/{emprego}/edit', 'EmpregosController@edit');
+Route::put('/empregos/{emprego}', 'EmpregosController@update');
+Route::delete('/empregos/{emprego}', 'EmpregosController@destroy');
