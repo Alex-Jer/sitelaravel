@@ -9,30 +9,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/gijgo.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/slicknav.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/themify-icons.css">
+    <link rel="stylesheet" href="/css/nice-select.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/gijgo.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/css/slicknav.css">
 
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -52,7 +53,7 @@
                             <div class="col-xl-3 col-lg-2">
                                 <div class="logo">
                                     <a href="/">
-                                        <img src="img/logo.png" alt="">
+                                        <img src="/img/logo.png" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -61,23 +62,10 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="/">Início</a></li>
-                                            <li><a href="/empregos">Empregos</a></li>
+                                            <li><a href="/empregos/list">Empregos</a></li>
                                             <li><a href="/formacao">Formação</a></li>
                                             <li><a href="/eventos">Eventos</a></li>
                                             <li><a href="/contactos">Contactos</a></li>
-                                            {{-- <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="candidate.html">Candidates </a></li>
-                                                    <li><a href="job_details.html">job details </a></li>
-                                                    <li><a href="elements.html">elements</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="single-blog.html">single-blog</a></li>
-                                                </ul>
-                                            </li> --}}
                                         </ul>
                                     </nav>
                                 </div>
@@ -117,7 +105,7 @@
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
                             <div class="footer_logo">
                                 <a href="#">
-                                    <img src="img/logo.png" alt="">
+                                    <img src="/img/logo.png" alt="">
                                 </a>
                             </div>
                             <p>
@@ -215,12 +203,11 @@
     </footer>
     <!--/ footer end  -->
 
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+    <div class="modal" id="loginModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Efetuar Login</h5>
+                    <h5 class="modal-title">Efetue o seu login</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -244,7 +231,6 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-
                         </div>
                         <div class="input-group mb-3">
                             <input id="password" type="password" placeholder="Password"
@@ -262,7 +248,6 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-
                         </div>
                         <div class="row">
                             <div class="col-8">
@@ -284,14 +269,14 @@
                             <!-- /.col -->
                         </div>
                     </form>
+
                 </div>
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-12">
                             @if (Route::has('password.request'))
-                            <a class="text-center" data-toggle="modal" data-target="#resetModal" data-dismiss="modal"
-                                href="#">
-                                {{ __('Não se lembra da password?') }}
+                            <a href="{{ route('password.request') }}">
+                                {{ __('Esqueceu a palavra-passe?') }}
                             </a>
                             @endif
                         </div>
@@ -307,15 +292,12 @@
             </div>
         </div>
     </div>
-    <!-- Login Modal end -->
 
-    <!-- Register Modal -->
-
-    <div class="modal fade" id="regModal" tabindex="-1" role="dialog">
+    <div class="modal" id="regModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Novo Utilizador</h5>
+                    <h5 class="modal-title">Registar Novo Utilizador</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -339,12 +321,11 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-
                         </div>
                         <div class="input-group mb-3">
-                            <input id="email" type="email" placeholder="Email"
-                                class="form-control @error('email') is-invalid @enderror" name="email"
-                                value="{{ old('email') }}" required autocomplete="email">
+                            <input id="emailreg" type="email" placeholder="Email"
+                                class="form-control @error('emailreg') is-invalid @enderror" name="emailreg"
+                                value="{{ old('email') }}" required autocomplete="emailreg">
 
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -352,17 +333,16 @@
                                 </div>
                             </div>
 
-                            @error('email')
+                            @error('emailreg')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-
                         </div>
                         <div class="input-group mb-3">
-                            <input id="password" type="password" placeholder="Password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="new-password">
+                            <input id="passwordreg" type="password" placeholder="Password"
+                                class="form-control @error('passwordreg') is-invalid @enderror" name="passwordreg"
+                                required autocomplete="new-password">
 
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -370,14 +350,14 @@
                                 </div>
                             </div>
 
-                            @error('password')
+                            @error('passwordreg')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
                         <div class="input-group mb-3">
-                            <input id="password-confirm" type="password" placeholder="Confirmar Password"
+                            <input id="password-confirm" type="password" placeholder="Confirme a password"
                                 class="form-control" name="password_confirmation" required autocomplete="new-password">
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -387,13 +367,13 @@
                         </div>
                         <div class="row">
                             {{-- <div class="col-8">
-                                                <div class="icheck-primary">
-                                                    <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                                                    <label for="agreeTerms">
-                                                        I agree to the <a href="#">terms</a>
-                                                    </label>
-                                                </div>
-                                            </div> --}}
+                                <div class="icheck-primary">
+                                    <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                    <label for="agreeTerms">
+                                        I agree to the <a href="#">terms</a>
+                                    </label>
+                                </div>
+                            </div> --}}
                             <!-- /.col -->
                             <div class="offset-8 col-4">
                                 <button type="submit" class="btn btn-primary btn-block">
@@ -412,114 +392,38 @@
         </div>
     </div>
 
-    <!--/ Register Modal end -->
-
-    <!--/ Forgot Password Modal -->
-
-    <div class="modal fade" id="resetModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Repor Password</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        {{-- <input type="hidden" name="token" value="{{ $token }}"> --}}
-
-                        <div class="form-group row">
-                            <label for="email"
-                                class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ $email ?? old('email') }}" required autocomplete="email"
-                                    autofocus>
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="new-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control"
-                                    name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">
-                        {{ __('Reset Password') }}
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--/ Forgot Password Modal End ->
-
     <!-- link that opens popup -->
     <!-- JS here -->
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="js/vendor/jquery-3.5.0.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-    <script src="js/ajax-form.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/scrollIt.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/nice-select.min.js"></script>
-    <script src="js/jquery.slicknav.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/gijgo.min.js"></script>
+    <script src="/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="/js/ajax-form.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <script src="/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/scrollIt.js"></script>
+    <script src="/js/jquery.scrollUp.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/nice-select.min.js"></script>
+    <script src="/js/jquery.slicknav.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/gijgo.min.js"></script>
 
 
 
     <!--contact js-->
-    <script src="js/contact.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/mail-script.js"></script>
+    <script src="/js/contact.js"></script>
+    <script src="/js/jquery.ajaxchimp.min.js"></script>
+    <script src="/js/jquery.form.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    {{-- <script src="/js/mail-script.js"></script> --}}
 
 
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

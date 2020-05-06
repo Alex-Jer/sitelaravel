@@ -72,8 +72,14 @@ class EmpregosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Empregos $empregos)
+    public function show(Empregos $emprego)
     {
+        $localidades = Localidades::all();
+        $empresas = Empresas::all();
+        $categorias = Categorias::all();
+        $tipos = Tipos::all();
+
+        return view('empregos.show', compact('emprego', 'localidades', 'empresas', 'categorias', 'tipos'));
     }
 
     /**
@@ -129,5 +135,48 @@ class EmpregosController extends Controller
         $emprego->delete();
 
         return redirect('/empregos')->with('message', 'Emprego Removido');
+    }
+
+    public function list()
+    {
+        $empregos = Empregos::all();
+        $localidades = Localidades::all();
+        $empresas = Empresas::all();
+        $categorias = Categorias::all();
+        $tipos = Tipos::all();
+
+        return view('empregos.list', compact('empregos', 'localidades', 'categorias', 'tipos'));
+    }
+
+    public function search()
+    {
+        $designacao = request('designacao');
+        $localidades_id = request('localidade');
+        $categorias_id = request('categoria');
+        $tipos_id = request('tipo');
+
+        $localidades = Localidades::all();
+        $categorias = Categorias::all();
+        $tipos = Tipos::all();
+
+        if ('Localidade' == $localidades_id) {
+            $localidades_id = '';
+        }
+
+        if ('Categoria' == $categorias_id) {
+            $categorias_id = '';
+        }
+
+        if ('Tipo' == $tipos_id) {
+            $tipos_id = '';
+        }
+        $empregos = Empregos::where('designacao', 'LIKE', '%'.$designacao.'%')
+            ->where('localidades_id', 'LIKE', '%'.$localidades_id.'%')
+            ->where('categorias_id', 'LIKE', '%'.$categorias_id.'%')
+            ->where('tipos_id', 'LIKE', '%'.$tipos_id.'%')
+            ->get()
+        ;
+
+        return view('empregos.list', compact('empregos', 'localidades', 'categorias', 'tipos'));
     }
 }

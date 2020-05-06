@@ -32,7 +32,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="test" role="form" method="POST" action="/empregos">
+                        <form id="myForm" role="form" method="POST" action="/empregos">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -96,6 +96,7 @@
                                         <option value="DO" selected="selected" disabled>Selecione uma categoria
                                         </option>
                                         @foreach ($categorias as $categoria)
+
                                         @if (old('categoria') == $categoria->id)
                                         <option value="{{ $categoria->id }}" selected>{{ $categoria->designacao }}
                                         </option>

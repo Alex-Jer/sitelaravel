@@ -81,7 +81,11 @@
                         <img src="/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                        <a href="#" class="d-block">
+                            @auth
+                            {{ Auth::user()->name }}
+                            @endauth
+                        </a>
                     </div>
 
                     <div class="ml-auto">
@@ -179,7 +183,7 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav n    av-treeview">
                                 <li class="nav-item">
                                     <a href="./index.html" class="nav-link">
                                         <i class="far fa-file nav-icon"></i>
